@@ -24,7 +24,7 @@ inline const flatbuffers::TypeTable *TableInNestedNSTypeTable();
 
 inline const flatbuffers::TypeTable *StructInNestedNSTypeTable();
 
-enum EnumInNestedNS {
+enum EnumInNestedNS : int8_t {
   EnumInNestedNS_A = 0,
   EnumInNestedNS_B = 1,
   EnumInNestedNS_C = 2,
@@ -172,7 +172,7 @@ inline flatbuffers::Offset<TableInNestedNS> CreateTableInNestedNS(
 flatbuffers::Offset<TableInNestedNS> CreateTableInNestedNS(flatbuffers::FlatBufferBuilder &_fbb, const TableInNestedNST *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline TableInNestedNST *TableInNestedNS::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  flatbuffers::unique_ptr<NamespaceA::NamespaceB::TableInNestedNST> _o = flatbuffers::unique_ptr<NamespaceA::NamespaceB::TableInNestedNST>(new TableInNestedNST());
+  auto _o = std::unique_ptr<TableInNestedNST>(new TableInNestedNST());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }

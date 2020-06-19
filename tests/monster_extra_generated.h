@@ -261,7 +261,7 @@ inline flatbuffers::Offset<MonsterExtra> CreateMonsterExtraDirect(
 flatbuffers::Offset<MonsterExtra> CreateMonsterExtra(flatbuffers::FlatBufferBuilder &_fbb, const MonsterExtraT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline MonsterExtraT *MonsterExtra::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  flatbuffers::unique_ptr<MyGame::MonsterExtraT> _o = flatbuffers::unique_ptr<MyGame::MonsterExtraT>(new MonsterExtraT());
+  auto _o = std::unique_ptr<MonsterExtraT>(new MonsterExtraT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
